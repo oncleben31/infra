@@ -1,0 +1,9 @@
+---
+all:
+  hosts:
+    ubuntu:
+      ansible_host: 192.168.1.38
+      ansible_ssh_user: oncleben31
+    macbook:
+      ansible_host: 192.168.1.23
+      ansible_ssh_user: Administrateur
