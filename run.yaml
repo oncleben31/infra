@@ -1,0 +1,7 @@
+---
+- hosts: macbookpro
+  vars_files:
+    - default.config.yml
+
+  roles:
+    - geerlingguy.homebrew
