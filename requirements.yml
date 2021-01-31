@@ -1,2 +1,4 @@
 ---
-- name: geerlingguy.homebrew
+- src: geerlingguy.homebrew
+- src: geerlingguy.docker
+- src: ironicbadger.ansible_role_docker_compose_generator

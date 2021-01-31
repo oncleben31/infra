@@ -1,7 +1,10 @@
 ---
 - hosts: macbookpro
-  vars_files:
-    - default.config.yml
-
   roles:
     - oncleben31-dev
+
+- hosts: ubuntu
+  roles:
+    - role: geerlingguy.docker
+    - role: oncleben31-ubuntu
+    - role: ironicbadger.ansible_role_docker_compose_generator
