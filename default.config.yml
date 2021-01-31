@@ -1,8 +1,0 @@
-homebrew_installed_packages:
-  - gh
-  - git
-  - nano
-  - pipx
-  - pyenv
-  - rsync
-  - ssh-copy-id
