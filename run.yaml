@@ -5,6 +5,7 @@
 
 - hosts: ubuntu
   roles:
+    - role: gantsign.oh-my-zsh
     - role: geerlingguy.docker
     - role: oncleben31-ubuntu
     - role: ironicbadger.ansible_role_docker_compose_generator

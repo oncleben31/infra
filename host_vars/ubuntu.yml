@@ -7,6 +7,17 @@ main_gid: "{{ main_uid }}"
 
 ntp_timezone: "Europe/Paris"
 
+
+# gantsign.oh-my-zsh
+oh_my_zsh_theme: robbyrussell
+oh_my_zsh_install: yes
+oh_my_zsh_plugins:
+  - git
+
+users:
+  - username: "{{ main_username }}"
+
+
 # oncleben31-ubuntu
 ubuntu_main_storage_path: /mnt/storage
 
