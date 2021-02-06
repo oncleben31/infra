@@ -1,4 +1,17 @@
 ---
+- hosts: all
+  tasks:
+    - name: remove ubuntu motd spam
+      become: true
+      file:
+        path: "/etc/update-motd.d/{{ item }}"
+        state: absent
+      loop:
+        # - 80-livepatch
+        # - 95-hwe-eol
+        - 10-help-text
+      when: ansible_distribution == 'Ubuntu'
+
 - hosts: macbookpro
   roles:
     - oncleben31-dev
