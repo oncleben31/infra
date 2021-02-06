@@ -1,0 +1,19 @@
+---
+# Need sudo for Ubuntu and not for macOS/homebrew (macbookpro)
+# tips: https://stackoverflow.com/questions/63242221/use-ansible-package-module-to-work-with-apt-and-homebrew
+
+- hosts: ubuntu
+  tasks:
+    - name: update all packages
+      become: true
+      package:
+        name: '*'
+        state: latest
+
+- hosts: macbookpro
+  tasks:
+    - name: update all packages
+      become: false
+      homebrew:
+        upgrade_all: yes
+
