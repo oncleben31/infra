@@ -26,7 +26,8 @@ data_disks:
 
 
 # ironicbadger.docker_compose_generator
-appdata_path: /mnt/storage/appdata
+appdata_path: "{{ubuntu_main_storage_path}}/appdata"
+download_path: /opt/downloads
 global_env_vars:
   - "PUID={{ main_uid }}"
   - "PGID={{ main_gid }}"
@@ -46,6 +47,93 @@ containers:
       - "{{ appdata_path }}/plex/config:/config"
       - /opt/appdata/plex/transcode:/transcode
       - "{{ ubuntu_main_storage_path }}:/data"
+    ports:
+      - 32400:32400/tcp
+      - 3005:3005/tcp
+      - 8324:8324/tcp
+      - 32469:32469/tcp
+      - 1900:1900/udp
+      - 32410:32410/udp
+      - 32412:32412/udp
+      - 32413:32413/udp
+      - 32414:32414/udp
     include_global_env_vars: true
     restart: unless-stopped
+###
+  - service_name: nzbget
+    active: true
+    image: linuxserver/nzbget
+    volumes:
+      - "{{ appdata_path }}/nzbget/config:/config"
+      - "{{ download_path }}:/downloads"
+    ports:
+      - 6789:6789
+    restart: unless-stopped
+    include_global_env_vars: true
+###
+  - service_name: transmission
+    active: true
+    image: linuxserver/transmission
+    volumes:
+      - "{{ appdata_path }}/transmission:/config"
+      - "{{ download_path }}:/downloads"
+      - "{{ ubuntu_main_storage_path }}/watch:/watch"
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    include_global_env_vars: true
+    restart: unless-stopped
+###  
+  - service_name: sonarr
+    active: true
+    image: linuxserver/sonarr:preview
+    depends_on:
+      - nzbget
+    volumes:
+      - "{{ appdata_path }}/sonarr:/config"
+      - "{{ download_path }}/complete/tv:/downloads/complete/tv"
+      - "{{ ubuntu_main_storage_path }}/tv:/tv"
+    ports:
+      - 8989:8989
+    restart: unless-stopped
+    include_global_env_vars: true
+###
+  - service_name: radarr
+    active: true
+    image: linuxserver/radarr
+    volumes:
+      - "{{ appdata_path }}/radarr:/config"
+      - "{{ ubuntu_main_storage_path }}/movies:/movies"
+      - "{{ download_path }}/complete/movies:/downloads/complete/movies"
+    ports:
+      - 7878:7878
+    restart: unless-stopped
+    include_global_env_vars: true
+###
+  - service_name: lidaar
+    active: true
+    image: linuxserver/radarr
+    volumes:
+      - "{{ appdata_path }}/radarr:/config"
+      - "{{ ubuntu_main_storage_path }}/music:/music"
+      - "{{ download_path }}/complete/music:/downloads/complete/music"
+    ports:
+      - 8686:8686
+    restart: unless-stopped
+    include_global_env_vars: true
+###
+  - service_name: jackett
+    active: true
+    image: linuxserver/jackett
+    environements:
+      - AUTO_UPDATE=true #optional
+      - RUN_OPTS=<run options here> #optional
+    volumes:
+      - "{{ appdata_path }}/jackett:/config"
+      - "{{ download_path }}:/downloads"
+    ports:
+      - 9117:9117
+    restart: unless-stopped
+    include_global_env_vars: true
 ###
