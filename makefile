@@ -4,6 +4,9 @@ u:
 m:
 	ansible-playbook run.yaml --limit macbookpro --ask-become-pass
 
+ucomp:
+	ansible-playbook run.yaml --limit ubuntu  --tags compose
+
 uu:
 	ansible-playbook -b update.yaml --limit ubuntu --ask-become-pass
 
