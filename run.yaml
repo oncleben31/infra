@@ -15,7 +15,8 @@
 - hosts: macbookpro
   roles:
     # Don't run it as root it will mess homebrew
-    - oncleben31-dev
+    - role: oncleben31-dev
+      tags: ['homebrew']
 
 - hosts: ubuntu
   roles:
@@ -23,3 +24,4 @@
     - role: geerlingguy.docker
     - role: oncleben31-ubuntu
     - role: ironicbadger.ansible_role_docker_compose_generator
+      tags: ['compose']
