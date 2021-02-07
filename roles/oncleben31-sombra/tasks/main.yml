@@ -1,0 +1,10 @@
+---
+
+- name: ensure hostname is set correctly
+  hostname:
+    name: "{{ hostname_sombra }}"
+
+- name: disks
+  include: disks.yml
+  tags:
+    - disks

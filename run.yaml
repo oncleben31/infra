@@ -12,16 +12,16 @@
         - 10-help-text
       when: ansible_distribution == 'Ubuntu'
 
-- hosts: macbookpro
+- hosts: winston
   roles:
     # Don't run it as root it will mess homebrew
-    - role: oncleben31-dev
+    - role: oncleben31-mac-dev
       tags: ['homebrew']
 
-- hosts: ubuntu
+- hosts: sombra
   roles:
     - role: gantsign.oh-my-zsh
     - role: geerlingguy.docker
-    - role: oncleben31-ubuntu
+    - role: oncleben31-sombra
     - role: ironicbadger.ansible_role_docker_compose_generator
       tags: ['compose']

@@ -1,17 +1,17 @@
-u:
-	ansible-playbook -b run.yaml --limit ubuntu --ask-become-pass
+s:
+	ansible-playbook -b run.yaml --limit sombra --ask-become-pass
 
-m:
-	ansible-playbook run.yaml --limit macbookpro --ask-become-pass
+w:
+	ansible-playbook run.yaml --limit winston --ask-become-pass
 
-ucomp:
-	ansible-playbook run.yaml --limit ubuntu  --tags compose
+scomp:
+	ansible-playbook run.yaml --limit sombra  --tags compose
 
-uu:
-	ansible-playbook -b update.yaml --limit ubuntu --ask-become-pass
+su:
+	ansible-playbook -b update.yaml --limit sombra --ask-become-pass
 
-um:
-	ansible-playbook  update.yaml --limit macbookpro 
+wm:
+	ansible-playbook  update.yaml --limit winston 
 
 reqs:
 	ansible-galaxy install -r requirements.yaml

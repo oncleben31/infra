@@ -1,5 +1,7 @@
 ---
 # generic settings
+hostname_sombra: sombra
+
 main_username: oncleben31
 main_groupname: "{{ main_username }}"
 main_uid: "1000"
@@ -18,15 +20,15 @@ users:
   - username: "{{ main_username }}"
 
 
-# oncleben31-ubuntu
-ubuntu_main_storage_path: /mnt/storage
+# oncleben31-sombra
+sombra_main_storage_path: /mnt/storage
 
 data_disks:
   - { path: /mnt/storage, diskbyid: /dev/disk/by-id/scsi-1ATA_ST1000DM003-1ER162_Z4YB25V9-part1, fs: ext4, opts: defaults }
 
 
 # ironicbadger.docker_compose_generator
-appdata_path: "{{ubuntu_main_storage_path}}/appdata"
+appdata_path: "{{sombra_main_storage_path}}/appdata"
 download_path: /opt/downloads
 global_env_vars:
   - "PUID={{ main_uid }}"
@@ -46,7 +48,7 @@ containers:
     volumes:
       - "{{ appdata_path }}/plex/config:/config"
       - /opt/appdata/plex/transcode:/transcode
-      - "{{ ubuntu_main_storage_path }}:/data"
+      - "{{ sombra_main_storage_path }}:/data"
     ports:
       - 32400:32400/tcp
       - 3005:3005/tcp
@@ -77,7 +79,7 @@ containers:
     volumes:
       - "{{ appdata_path }}/transmission:/config"
       - "{{ download_path }}:/downloads"
-      - "{{ ubuntu_main_storage_path }}/watch:/watch"
+      - "{{ sombra_main_storage_path }}/watch:/watch"
     ports:
       - 9091:9091
       - 51413:51413
@@ -93,7 +95,7 @@ containers:
     volumes:
       - "{{ appdata_path }}/sonarr:/config"
       - "{{ download_path }}/complete/tv:/downloads/complete/tv"
-      - "{{ ubuntu_main_storage_path }}/tv:/tv"
+      - "{{ sombra_main_storage_path }}/tv:/tv"
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -104,7 +106,7 @@ containers:
     image: linuxserver/radarr
     volumes:
       - "{{ appdata_path }}/radarr:/config"
-      - "{{ ubuntu_main_storage_path }}/movies:/movies"
+      - "{{ sombra_main_storage_path }}/movies:/movies"
       - "{{ download_path }}/complete/movies:/downloads/complete/movies"
     ports:
       - 7878:7878
@@ -116,7 +118,7 @@ containers:
     image: linuxserver/radarr
     volumes:
       - "{{ appdata_path }}/radarr:/config"
-      - "{{ ubuntu_main_storage_path }}/music:/music"
+      - "{{ sombra_main_storage_path }}/music:/music"
       - "{{ download_path }}/complete/music:/downloads/complete/music"
     ports:
       - 8686:8686
