@@ -14,4 +14,4 @@ wm:
 	ansible-playbook  update.yaml --limit winston 
 
 reqs:
-	ansible-galaxy install -r requirements.yaml
+	ansible-galaxy install -r requirements.yml
