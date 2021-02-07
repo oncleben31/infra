@@ -15,6 +15,7 @@
 - hosts: winston
   roles:
     # Don't run it as root it will mess homebrew
+    - role: ctorgalson.macos_hostname
     - role: oncleben31-mac-dev
       tags: ['homebrew']
 
