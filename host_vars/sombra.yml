@@ -15,6 +15,7 @@ oh_my_zsh_theme: robbyrussell
 oh_my_zsh_install: yes
 oh_my_zsh_plugins:
   - git
+  - docker-compose
 
 users:
   - username: "{{ main_username }}"
