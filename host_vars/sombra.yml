@@ -125,6 +125,20 @@ containers:
     restart: unless-stopped
     include_global_env_vars: true
 ###
+
+  - service_name: bazarr
+    active: true
+    image: linuxserver/bazarr
+    volumes:
+      - "{{ appdata_path }}/bazarr:/config"
+      - "{{ sombra_main_storage_path }}/movies:/movies"
+      - "{{ sombra_main_storage_path }}/tv:/tv"
+    ports:
+      - 6767:6767
+    restart: unless-stopped
+    include_global_env_vars: true
+
+###
   - service_name: jackett
     active: true
     image: linuxserver/jackett
