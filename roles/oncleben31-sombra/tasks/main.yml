@@ -8,3 +8,12 @@
   include: disks.yml
   tags:
     - disks
+
+- name: install dotfiles
+  copy:
+    src: "dotfiles/{{item}}"
+    dest: "/home/{{main_username}}/{{item}}"
+    owner: "{{main_username}}"
+    group: "{{main_groupname}}"
+  loop:
+    - .oh-my-zsh/custom/aliases.zsh
