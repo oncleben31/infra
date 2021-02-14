@@ -17,6 +17,7 @@ oh_my_zsh_plugins:
   - git
   - docker-compose
 
+
 users:
   - username: "{{ main_username }}"
 
@@ -27,6 +28,9 @@ sombra_main_storage_path: /mnt/storage
 data_disks:
   - { path: /mnt/storage, diskbyid: /dev/disk/by-id/scsi-1ATA_ST1000DM003-1ER162_Z4YB25V9-part1, fs: ext4, opts: defaults }
 
+# geerlingguy.docker
+docker_users:
+  - "{{ main_username }}"
 
 # ironicbadger.docker_compose_generator
 appdata_path: "{{sombra_main_storage_path}}/appdata"
@@ -87,7 +91,21 @@ containers:
       - 51413:51413/udp
     include_global_env_vars: true
     restart: unless-stopped
-###  
+###
+  - service_name: rutorrent
+    active: true
+    image: ghcr.io/linuxserver/rutorrent
+    volumes:
+      - "{{ appdata_path }}/rutorrent:/config"
+      - "{{ download_path }}:/downloads"
+    ports:
+      - 80:80
+      - 5000:5000
+      - 51414:51413
+      - 6881:6881/udp
+    include_global_env_vars: true
+    restart: unless-stopped
+###
   - service_name: sonarr
     active: true
     image: linuxserver/sonarr:preview
@@ -114,11 +132,11 @@ containers:
     restart: unless-stopped
     include_global_env_vars: true
 ###
-  - service_name: lidaar
+  - service_name: lidarr
     active: true
-    image: linuxserver/radarr
+    image: linuxserver/lidarr
     volumes:
-      - "{{ appdata_path }}/radarr:/config"
+      - "{{ appdata_path }}/lidaar:/config"
       - "{{ sombra_main_storage_path }}/music:/music"
       - "{{ download_path }}/complete/music:/downloads/complete/music"
     ports:
@@ -138,7 +156,6 @@ containers:
       - 6767:6767
     restart: unless-stopped
     include_global_env_vars: true
-
 ###
   - service_name: jackett
     active: true
@@ -154,3 +171,14 @@ containers:
     restart: unless-stopped
     include_global_env_vars: true
 ###
+  - service_name: flaresolverr
+    active: true
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    environment:
+      - LOG_LEVEL=info
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+    ports:
+      - "8191:8191"
+    restart: unless-stopped 
+    include_global_env_vars: true
