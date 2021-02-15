@@ -15,11 +15,17 @@ oh_my_zsh_theme: robbyrussell
 oh_my_zsh_install: yes
 oh_my_zsh_plugins:
   - git
-  - docker-compose
-
+  - z
 
 users:
   - username: "{{ main_username }}"
+    oh_my_zsh:
+      theme: robbyrussell
+      plugins:
+        - git
+        - docker-compose
+        - z
+#        - zsh-autosuggestions
 
 
 # oncleben31-sombra
@@ -136,7 +142,7 @@ containers:
     active: true
     image: linuxserver/lidarr
     volumes:
-      - "{{ appdata_path }}/lidaar:/config"
+      - "{{ appdata_path }}/lidarr:/config"
       - "{{ sombra_main_storage_path }}/music:/music"
       - "{{ download_path }}/complete/music:/downloads/complete/music"
     ports:
