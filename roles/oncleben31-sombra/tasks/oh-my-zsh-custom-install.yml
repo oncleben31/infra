@@ -1,0 +1,26 @@
+---
+
+- name: clone Oh My ZSH custom plugins for a user
+  become: yes
+  become_user: '{{ user_item }}'
+  command: 'git clone --depth 1 {{ custom_plugins[plugin] }} {{ plugin }}'
+  args:
+    chdir: '~{{ user_item }}/.oh-my-zsh/custom/plugins/'
+    creates: '~{{ user_item }}/.oh-my-zsh/custom/plugins/{{plugin}}'
+  with_items: "{{ plugins_list }}"
+  when: plugin in custom_plugins.keys()
+  loop_control:
+    loop_var: plugin
+  tags: 
+    - oh-my-zsh
+
+- name: clone Oh My ZSH custom theme for a user
+  become: yes
+  become_user: '{{ user_item }}'
+  command: 'git clone --depth 1 {{ custom_themes[theme_item].src }} {{ custom_themes[theme_item].folder }}'
+  args:
+    chdir: '~{{ user_item }}/.oh-my-zsh/custom/themes/'
+    creates: '~{{ user_item }}/.oh-my-zsh/custom/themes/{{ custom_themes[theme_item].folder }}'
+  when: theme_item in custom_themes.keys()
+  tags: 
+    - oh-my-zsh

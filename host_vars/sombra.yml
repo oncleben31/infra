@@ -19,6 +19,11 @@ package_list:
 custom_plugins:
   zsh-autosuggestions: https://github.com/zsh-users/zsh-autosuggestions
 
+custom_themes:
+  powerlevel10k/powerlevel10k: 
+    src: https://github.com/romkatv/powerlevel10k.git
+    folder: powerlevel10k
+
 # gantsign.oh-my-zsh
 oh_my_zsh_theme: robbyrussell
 oh_my_zsh_install: yes
@@ -29,7 +34,7 @@ oh_my_zsh_plugins:
 users:
   - username: "{{ main_username }}"
     oh_my_zsh:
-      theme: robbyrussell
+      theme: powerlevel10k/powerlevel10k
       plugins:
         - git
         - docker-compose

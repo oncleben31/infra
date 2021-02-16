@@ -18,10 +18,11 @@
   loop:
     - .oh-my-zsh/custom/aliases.zsh
 
-- name: install oh my zsh custom plugins
-  include: oh-my-zsh-custom-plugin-install.yml
+- name: install oh my zsh custom plugins and theme
+  include: oh-my-zsh-custom-install.yml
     user_item={{ item.username }}
     plugins_list={{ item.oh_my_zsh.plugins }}
+    theme_item={{ item.oh_my_zsh.theme }}
   loop: "{{ users }}"
   tags: 
     - oh-my-zsh
