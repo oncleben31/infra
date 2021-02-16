@@ -17,3 +17,11 @@
     group: "{{main_groupname}}"
   loop:
     - .oh-my-zsh/custom/aliases.zsh
+
+- name: install oh my zsh custom plugins
+  include: oh-my-zsh-custom-plugin-install.yml
+    user_item={{ item.username }}
+    plugins_list={{ item.oh_my_zsh.plugins }}
+  loop: "{{ users }}"
+  tags: 
+    - oh-my-zsh

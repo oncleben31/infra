@@ -15,6 +15,10 @@ package_list:
   - name: htop
   - name: tree
 
+# oh-my-zsh custom plugins (onceleben31-sombra)
+custom_plugins:
+  zsh-autosuggestions: https://github.com/zsh-users/zsh-autosuggestions
+
 # gantsign.oh-my-zsh
 oh_my_zsh_theme: robbyrussell
 oh_my_zsh_install: yes
@@ -30,7 +34,7 @@ users:
         - git
         - docker-compose
         - z
-#        - zsh-autosuggestions
+        - zsh-autosuggestions
 
 # oncleben31-sombra
 sombra_main_storage_path: /mnt/storage
