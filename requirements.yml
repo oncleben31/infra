@@ -4,3 +4,4 @@
 - src: ironicbadger.ansible_role_docker_compose_generator
 - src: gantsign.oh-my-zsh
 - src: ctorgalson.macos_hostname
+- src: grog.package

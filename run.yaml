@@ -21,8 +21,10 @@
 
 - hosts: sombra
   roles:
-    - role: gantsign.oh-my-zsh
     - role: geerlingguy.docker
+    - role: grog.package
+    - role: gantsign.oh-my-zsh
+      tags: ['oh-my-zsh']
     - role: oncleben31-sombra
     - role: ironicbadger.ansible_role_docker_compose_generator
       tags: ['compose']

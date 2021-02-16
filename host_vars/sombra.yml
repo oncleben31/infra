@@ -10,6 +10,11 @@ main_gid: "{{ main_uid }}"
 ntp_timezone: "Europe/Paris"
 
 
+# grog.package
+package_list:
+  - name: htop
+  - name: tree
+
 # gantsign.oh-my-zsh
 oh_my_zsh_theme: robbyrussell
 oh_my_zsh_install: yes
@@ -26,7 +31,6 @@ users:
         - docker-compose
         - z
 #        - zsh-autosuggestions
-
 
 # oncleben31-sombra
 sombra_main_storage_path: /mnt/storage
