@@ -18,6 +18,9 @@
     - role: ctorgalson.macos_hostname
     - role: oncleben31-mac-dev
       tags: ['homebrew']
+    - role: oncleben31-mac-default
+      tags: ['homebrew']
+
 
 - hosts: sombra
   roles:
