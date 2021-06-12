@@ -8,3 +8,8 @@ homebrew_installed_packages:
   - pyenv
   - rsync
   - ssh-copy-id
+
+homebrew_cask_appdir: /Applications
+homebrew_cask_apps:
+  - visual-studio-code
+  - github
