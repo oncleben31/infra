@@ -2,4 +2,4 @@
 
 - name: Install homebrew packages
   include_role:
-    name: geerlingguy.homebrew
+    name: geerlingguy.mac.homebrew

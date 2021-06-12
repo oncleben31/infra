@@ -1,7 +1,10 @@
 ---
-- src: geerlingguy.homebrew
-- src: geerlingguy.docker
-- src: ironicbadger.ansible_role_docker_compose_generator
-- src: gantsign.oh-my-zsh
-- src: ctorgalson.macos_hostname
-- src: grog.package
+roles:
+- name: geerlingguy.docker
+- name: ironicbadger.ansible_role_docker_compose_generator
+- name: gantsign.oh-my-zsh
+- name: ctorgalson.macos_hostname
+- name: grog.package
+
+collections:
+  - name: geerlingguy.mac
