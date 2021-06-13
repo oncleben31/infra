@@ -1,10 +1,10 @@
 ---
 roles:
-- name: geerlingguy.docker
-- name: ironicbadger.ansible_role_docker_compose_generator
-- name: gantsign.oh-my-zsh
 - name: ctorgalson.macos_hostname
+- name: gantsign.oh-my-zsh
+- name: geerlingguy.docker
 - name: grog.package
+- name: ironicbadger.ansible_role_docker_compose_generator
 
 collections:
   - name: geerlingguy.mac
