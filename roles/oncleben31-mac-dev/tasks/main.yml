@@ -3,3 +3,14 @@
 - name: Install homebrew packages
   include_role:
     name: geerlingguy.mac.homebrew
+  tags: ['homebrew']
+
+- name: install dotfiles for oncleben31
+  copy:
+    src: "dotfiles/{{item}}"
+    dest: "/Users/oncleben31/{{item}}"
+    owner: "oncleben31"
+    group: "staff"
+  loop:
+    - .gitconfig
+  tags: ['dotfiles']

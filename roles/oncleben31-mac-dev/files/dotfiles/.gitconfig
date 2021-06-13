@@ -1,0 +1,16 @@
+[user]
+	name = oncleben31
+	email = oncleben31@users.noreply.github.com
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[push]
+	default = simple
+[core]
+	editor = nano
+[init]
+	defaultbranch = main
+[pull]
+	ff = only
