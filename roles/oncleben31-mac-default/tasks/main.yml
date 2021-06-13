@@ -1,5 +1,11 @@
 ---
 
-- name: Install homebrew packages
-  include_role:
-    name: geerlingguy.mac.homebrew
+# - name: Add user switch in menu
+#   community.general.osx_defaults:
+#     domain: com.apple.controlcenter
+#     key: NSStatusItem Visible UserSwitcher
+#     type: bool
+#     value: true
+#     state: present
+#   become: yes
+#   become_user: oncleben31

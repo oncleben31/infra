@@ -16,10 +16,12 @@
   roles:
     # Don't run it as root it will mess homebrew
     - role: ctorgalson.macos_hostname
-    - role: oncleben31-mac-dev
-      tags: ['homebrew', 'dotfiles']
-    - role: oncleben31-mac-default
+    - role: geerlingguy.mac.homebrew
       tags: ['homebrew']
+    - role: oncleben31-mac-default
+    - role: oncleben31-mac-dev
+      tags: ['dotfiles']
+      
 
 
 - hosts: sombra

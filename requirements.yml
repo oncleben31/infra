@@ -7,4 +7,6 @@ roles:
 - name: ironicbadger.ansible_role_docker_compose_generator
 
 collections:
+  # community.general for osx_defaults
+  - name: community.general 
   - name: geerlingguy.mac

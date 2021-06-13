@@ -3,3 +3,31 @@
 # ctorgalson.macos_hostname
 mh_localhostname: winston
 mh_computername: winston
+
+# geerlingguy.mac.homebrew
+homebrew_cask_appdir: /Applications
+
+homebrew_cask_apps_default:
+  - dropbox
+  - google-chrome
+  - discord
+  - 1password
+  - telegram
+
+homebrew_installed_packages_default: []
+
+homebrew_cask_apps_dev:
+  - visual-studio-code
+  - github
+
+homebrew_installed_packages_dev:
+  - gh
+  - git
+  - nano
+  - pipx
+  - pyenv
+  - rsync
+  - ssh-copy-id
+
+homebrew_cask_apps: "{{ homebrew_cask_apps_default + homebrew_cask_apps_dev }}"
+homebrew_installed_packages: "{{ homebrew_installed_packages_default + homebrew_installed_packages_dev}}"
