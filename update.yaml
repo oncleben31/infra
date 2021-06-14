@@ -11,6 +11,8 @@
         state: latest
 
 - hosts: winston
+  vars_files:
+    - 'vars/vault.yaml'
   tasks:
     - name: update all packages
       become: false

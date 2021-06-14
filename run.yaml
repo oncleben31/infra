@@ -13,6 +13,8 @@
       when: ansible_distribution == 'Ubuntu'
 
 - hosts: winston
+  vars_files:
+    - 'vars/vault.yaml'
   roles:
     # Don't run it as root it will mess homebrew
     - role: ctorgalson.macos_hostname
