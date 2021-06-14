@@ -13,6 +13,8 @@ homebrew_cask_apps_default:
   - discord
   - 1password
   - telegram
+  - prusaslicer
+  - ultimaker-cura
 
 homebrew_installed_packages_default: []
 
@@ -25,6 +27,7 @@ homebrew_installed_packages_dev:
   - git
   - nano
   - pipx
+  - pre-commit
   - pyenv
   - rsync
   - ssh-copy-id
