@@ -9,3 +9,16 @@
 #     state: present
 #   become: yes
 #   become_user: oncleben31
+
+- name: Add familly users
+  include_role:
+    name: marcomc.macos_new_user
+  vars:
+    new_user_username: "{{ user.username }}"
+    new_user_fullname: "{{ user.fullname }}"
+    new_user_profile_picture_path: "{{ user.new_user_profile_picture_path }}"
+    new_user_password_cleartext: "{{ secret_default_password }}"
+    new_user_is_admin: no
+  loop: "{{ secret_users_details }}"
+  loop_control: 
+    loop_var: user

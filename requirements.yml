@@ -5,6 +5,8 @@ roles:
 - name: geerlingguy.docker
 - name: grog.package
 - name: ironicbadger.ansible_role_docker_compose_generator
+- name: marcomc.macos_new_user
+
 
 collections:
   # community.general for osx_defaults
