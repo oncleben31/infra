@@ -23,6 +23,7 @@ homebrew_cask_apps_dev:
   - github
 
 homebrew_installed_packages_dev:
+  - ansible-lint
   - gh
   - git
   - nano
@@ -32,5 +33,6 @@ homebrew_installed_packages_dev:
   - rsync
   - ssh-copy-id
 
+# Merge two categories of homebrew packages.
 homebrew_cask_apps: "{{ homebrew_cask_apps_default + homebrew_cask_apps_dev }}"
 homebrew_installed_packages: "{{ homebrew_installed_packages_default + homebrew_installed_packages_dev}}"
