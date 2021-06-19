@@ -16,7 +16,8 @@ homebrew_cask_apps_default:
   - prusaslicer
   - ultimaker-cura
 
-homebrew_installed_packages_default: []
+homebrew_installed_packages_default:
+  - dockutil #paptch for updating Dock item for non-admin users
 
 homebrew_cask_apps_dev:
   - visual-studio-code
@@ -36,3 +37,31 @@ homebrew_installed_packages_dev:
 # Merge two categories of homebrew packages.
 homebrew_cask_apps: "{{ homebrew_cask_apps_default + homebrew_cask_apps_dev }}"
 homebrew_installed_packages: "{{ homebrew_installed_packages_default + homebrew_installed_packages_dev}}"
+
+# geerlingguy.mac.dock
+dockitems_remove:
+  - Mail
+  - TV
+  - Podcasts
+  - Plans
+  - Musique
+
+dockitems_persist: []
+  # - name: Google Chrome
+  #   path: "/Applications/Google Chrome.app/"
+  #   pos: 3
+  # - name: Safari
+  #   path: "/Applications/Safari.app/"
+  #   pos: 4
+  # - name: 1Paswword 7
+  #   path: "/Applications/1Password 7.app/"
+  #   pos: 5
+  # - name: Visual Studio Code
+  #   path: "/Applications/Visual Studio Code.app/"
+  #   pos: 6
+  # - name: Discord
+  #   path: "/Applications/Discord.app/"
+  #   pos: 7
+  # - name: Telegram
+  #   path: "/Applications/Telegram.app/"
+  #   pos: 8

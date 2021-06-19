@@ -23,6 +23,10 @@
     - role: oncleben31-mac-default
     - role: oncleben31-mac-dev
       tags: ['dotfiles']
+    - role: geerlingguy.mac.dock
+      tags: ['dock']
+      become: yes
+      become_user: oncleben31
       
 
 
