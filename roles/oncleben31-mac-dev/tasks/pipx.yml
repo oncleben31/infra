@@ -1,0 +1,36 @@
+- name: Install {{package.name}} with pipx
+  block: 
+    - name: Get pipx installed packages
+      command: /usr/local/bin/pipx list --include-injected --json
+      register: pipx_installed_packages
+    
+    - debug:
+        msg: "{{ pipx_installed_packages.stdout | from_json | community.general.json_query('venvs.nox.metadata.injected_packages.*.package') }}"
+
+    - debug:
+        msg: "Already installed"
+      when: package.name in (pipx_installed_packages.stdout | from_json).venvs.keys()
+
+    - name: Check if {{package.name}} is installed
+      stat:
+        path: "/Users/oncleben31/.local/pipx/venvs/{{package.name}}"
+      register: package_folder_check
+
+    - name: Install {{package.name}}
+      command: /usr/local/bin/pipx install {{package.name}}
+      register: output
+      when: 
+        - not package_folder_check.stat.exists
+
+    - name: Inject some packages in {{package.name}}
+      command: /usr/local/bin/pipx inject {{package.name}} {{item}}
+      register: output
+      loop:
+        "{{package.inject}}"
+      when: 
+        - not package_folder_check.stat.exists
+        - package.inject is defined"
+  become: yes
+  become_user: oncleben31
+  tags: pipx
+  

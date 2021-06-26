@@ -1,0 +1,14 @@
+# If pyenv fails, check https://github.com/pyenv/pyenv/wiki/Common-build-problems#build-failed-error-the-python-zlib-extension-was-not-compiled-missing-the-zlib
+- name: Install python versions with pyenv
+  command: /usr/local/bin/pyenv install -s {{ item }}
+  args:
+    creates: "{{ ansible_env.HOME }}/.pyenv/versions/{{ item }}/bin/python"
+  register: pyenv_install_result
+  failed_when: >
+    pyenv_install_result.rc != 0 and
+  loop: '{{ pyenv_python_versions }}'
+  become: yes
+  become_user: oncleben31
+  tags:
+  - pyenv
+

@@ -33,6 +33,17 @@ homebrew_installed_packages_dev:
   - rsync
   - ssh-copy-id
 
+pipx_installed_packages_dev:
+  - name: cookiecutter
+  - name: poetry
+  - name: nox
+    inject: 
+      - nox-poetry
+
+
+  
+
+
 # Merge two categories of homebrew packages.
 homebrew_cask_apps: "{{ homebrew_cask_apps_default + homebrew_cask_apps_dev }}"
 homebrew_installed_packages: "{{ homebrew_installed_packages_default + homebrew_installed_packages_dev}}"
