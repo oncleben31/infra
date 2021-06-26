@@ -12,6 +12,7 @@
 
 - name: Install Python versions
   include_tasks: python.yml
+  tags: pyenv
 
 - name: Install pipx packages
   include_tasks: pipx.yml
