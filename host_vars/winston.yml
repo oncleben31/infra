@@ -36,3 +36,8 @@ homebrew_installed_packages_dev:
 # Merge two categories of homebrew packages.
 homebrew_cask_apps: "{{ homebrew_cask_apps_default + homebrew_cask_apps_dev }}"
 homebrew_installed_packages: "{{ homebrew_installed_packages_default + homebrew_installed_packages_dev}}"
+
+# Python versions to install with pyenv
+pyenv_python_versions:
+  - 3.9.5
+  - 3.8.10
