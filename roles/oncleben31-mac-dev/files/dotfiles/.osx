@@ -1,0 +1,62 @@
+#!/usr/bin/env bash
+
+# Mac OS X configuration
+#
+# This configuration applies to the latest version of macOS (currently 11.4),
+# and sets up preferences and configurations for all the built-in services and
+# apps. Third-party app config should be done elsewhere.
+#
+# Warning: Due to sandboxing and SIP, you will need to manualy give Full Disk Access to Terminal
+# to access some configurations.
+#
+# Options:
+#   --no-restart: Don't restart any apps or services after running the script.
+#
+# If you want to figure out what default needs changing, do the following:
+#
+#   1. `cd /tmp`
+#   2. Store current defaults in file: `defaults read > before`
+#   3. Make a change to your system.
+#   4. Store new defaults in file: `defaults read > after`
+#   5. Diff the files: `diff before after`
+#
+# @see: https://github.com/herrbischoff/awesome-macos-command-line
+#
+# Inspired by  Jeff Geerling https://github.com/geerlingguy/dotfiles/blob/master/.osx
+
+###############################################################################
+# General UI/UX                                                               #
+###############################################################################
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+###############################################################################
+# Safari                                                                      #
+###############################################################################
+
+# Do not save password and payment cards
+defaults write -app Safari AutoFillCreditCardData -bool false
+defaults write -app Safari AutoFillPasswords -bool false
+
+# Display status bar
+defaults write -app Safari ShowOverlayStatusBar -bool true
+
+###############################################################################
+# Kill/restart affected applications                                          #
+###############################################################################
+
+# Restart affected applications if `--no-restart` flag is not present.
+if [[ ! ($* == *--no-restart*) ]]; then
+  for app in "cfprefsd" "Dock" "Finder" "Mail" "SystemUIServer" "Terminal"; do
+    killall "${app}" > /dev/null 2>&1
+  done
+fi
+
+printf "Please log out and log back in to make all settings take effect.\n"
