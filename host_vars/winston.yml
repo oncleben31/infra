@@ -15,6 +15,7 @@ homebrew_cask_apps_default:
   - telegram
   - prusaslicer
   - ultimaker-cura
+  - openscad
 
 homebrew_installed_packages_default: []
 
@@ -39,6 +40,15 @@ pipx_installed_packages_dev:
   - name: nox
     inject: 
       - nox-poetry
+
+VSC_extension_dev:
+  - oncleben31: 
+    visual_studio_code_extensions:
+      - alefragnani.project-manager
+      - ms-python.python
+      - github.vscode-pull-request-github
+      - keesschollaart.vscode-home-assistant
+      - ms-vscode-remote.remote-containers
 
 
   
