@@ -9,6 +9,11 @@
   tags:
     - disks
 
+- name: file-sharing
+  include: file-sharing.yml
+  tags:
+    - file-sharing
+
 - name: install dotfiles
   copy:
     src: "dotfiles/{{item}}"
