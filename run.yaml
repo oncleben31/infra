@@ -35,3 +35,5 @@
     - role: oncleben31-sombra
     - role: ironicbadger.ansible_role_docker_compose_generator
       tags: ['compose']
+    - role: oncleben31-traefik
+      tags: ['compose']

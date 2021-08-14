@@ -1,0 +1,27 @@
+entryPoints:
+    web:
+        address: :80
+    websecure:
+        address: :443
+
+providers:
+    docker:
+        endpoint: unix:///var/run/docker.sock
+        watch: true
+        exposedByDefault: false
+{% if traefik_file_provider %}
+    file:
+      filename: /etc/traefik/rules.yaml
+{% endif %}
+
+{% if traefik_enable_dashboard %}
+api:
+    dashboard: true
+    insecure: true
+{% endif %}
+
+
+{% if traefik_insecure_transport %}
+serversTransport:
+    insecureSkipVerify: true
+{% endif %}
