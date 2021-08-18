@@ -27,6 +27,8 @@
 
 
 - hosts: sombra
+  vars_files:
+    - 'vars/vault.yaml'
   roles:
     - role: geerlingguy.docker
     - role: grog.package
