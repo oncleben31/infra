@@ -22,6 +22,8 @@
     group: "{{main_groupname}}"
   loop:
     - .oh-my-zsh/custom/aliases.zsh
+  tags:
+    - dotfiles
 
 - name: install oh my zsh custom plugins and theme
   include: oh-my-zsh-custom-install.yml

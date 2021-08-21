@@ -65,7 +65,7 @@ docker_compose_generator_output_path: "/home/{{ main_username }}"
 # oncleben31-traefik
 traefik_file_provider: false
 traefik_enable_dashboard: true
-traefik_insecure_transport: true
+traefik_insecure_transport: false
 
 containers:
 ###
@@ -76,9 +76,6 @@ containers:
     ports:
       - 80:80
       - 443:443
-    #  - 8080:8080
-    # extra_hosts:
-    #   - host.docker.internal:172.17.0.1
     environment:
      - "OVH_APPLICATION_KEY={{ secret_ovh_app_key }}"
      - "OVH_APPLICATION_SECRET={{ secret_ovh_app_secret }}"
@@ -116,7 +113,7 @@ containers:
     #   - 32414:32414/udp
     labels:
       - traefik.enable=true
-      - traefik.http.routers.plex.entrypoints=web,websecure
+      - traefik.http.routers.plex.entrypoints=websecure
       - "traefik.http.routers.plex.rule=Host(`plex.{{ secret_local_domain }}`)"
       - traefik.http.services.plex.loadbalancer.server.port=32400
     #  - traefik.http.services.plex.loadbalancer.server.scheme=https
@@ -155,20 +152,6 @@ containers:
     include_global_env_vars: true
     restart: unless-stopped
 ###
-  - service_name: rutorrent
-    active: false
-    image: ghcr.io/linuxserver/rutorrent
-    volumes:
-      - "{{ appdata_path }}/rutorrent:/config"
-      - "{{ download_path }}:/downloads"
-    ports:
-      - 8081:80
-      - 5000:5000
-      - 51414:51413
-      - 6881:6881/udp
-    include_global_env_vars: true
-    restart: unless-stopped
-###
   - service_name: sonarr
     active: true
     image: linuxserver/sonarr:latest
@@ -180,7 +163,7 @@ containers:
       - "{{ sombra_main_storage_path }}/tv:/tv"
     labels:
       - traefik.enable=true
-      - "traefik.http.routers.sonarr.rule=Host(`sonarr.{{ secret_local_domain }}`)"
+      - "traefik.http.routers.sonarr.rule=Host(`tv.{{ secret_local_domain }}`)"
       - traefik.http.routers.sonarr.entrypoints=websecure
     restart: unless-stopped
     include_global_env_vars: true
@@ -194,7 +177,7 @@ containers:
       - "{{ download_path }}/complete/movies:/downloads/complete/movies"
     labels:
       - traefik.enable=true
-      - "traefik.http.routers.radarr.rule=Host(`radarr.{{ secret_local_domain }}`)"
+      - "traefik.http.routers.radarr.rule=Host(`movies.{{ secret_local_domain }}`)"
       - traefik.http.routers.radarr.entrypoints=websecure
     restart: unless-stopped
     include_global_env_vars: true
@@ -208,7 +191,7 @@ containers:
       - "{{ download_path }}/complete/music:/downloads/complete/music"
     labels:
       - traefik.enable=true
-      - "traefik.http.routers.lidarr.rule=Host(`lidarr.{{ secret_local_domain }}`)"
+      - "traefik.http.routers.lidarr.rule=Host(`music.{{ secret_local_domain }}`)"
       - traefik.http.routers.lidarr.entrypoints=websecure
     restart: unless-stopped
     include_global_env_vars: true
@@ -222,7 +205,7 @@ containers:
       - "{{ sombra_main_storage_path }}/tv:/tv"
     labels:
       - traefik.enable=true
-      - "traefik.http.routers.bazarr.rule=Host(`bazarr.{{ secret_local_domain }}`)"
+      - "traefik.http.routers.bazarr.rule=Host(`subs.{{ secret_local_domain }}`)"
       - traefik.http.routers.bazarr.entrypoints=websecure
     restart: unless-stopped
     include_global_env_vars: true
@@ -234,7 +217,7 @@ containers:
       - "{{ appdata_path }}/prowlarr:/config"
     labels:
       - traefik.enable=true
-      - "traefik.http.routers.prowlarr.rule=Host(`prowlarr.{{ secret_local_domain }}`)"
+      - "traefik.http.routers.prowlarr.rule=Host(`indexer.{{ secret_local_domain }}`)"
       - traefik.http.routers.prowlarr.entrypoints=websecure
     restart: unless-stopped
     include_global_env_vars: true
@@ -310,7 +293,7 @@ containers:
       - /var/run/docker.sock:/var/run/docker.sock
     labels:
       - traefik.enable=true
-      - "traefik.http.routers.dozzle.rule=Host(`dozzle.{{ secret_local_domain }}`)"
+      - "traefik.http.routers.dozzle.rule=Host(`logs.{{ secret_local_domain }}`)"
       - traefik.http.routers.dozzle.entrypoints=websecure
     restart: unless-stopped
     include_global_env_vars: true
