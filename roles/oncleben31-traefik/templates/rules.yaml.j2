@@ -1,0 +1,30 @@
+http:
+  routers:
+    router-unificontroler:
+      entryPoints:
+        - websecure
+      rule: "Host(`unifi.{{ secret_local_domain }}`)"
+      service: service-unificontroler
+    router-octoprint:
+      entryPoints:
+        - websecure
+      rule: "Host(`genji.{{ secret_local_domain }}`)"
+      service: service-octoprint
+    router-homeassistant:
+      entryPoints:
+        - websecure
+      rule: "Host(`ha.{{ secret_local_domain }}`)"
+      service: service-homeassistant
+  services:
+    service-unificontroler:
+      loadBalancer:
+        servers:
+        - url: "https://192.168.1.35:8443"
+    service-octoprint:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.1.41:80"
+    service-homeassistant:
+      loadBalancer:
+        servers:
+        - url: "http://192.168.1.35:8123"

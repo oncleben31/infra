@@ -63,9 +63,9 @@ docker_compose_generator_gid: "{{ main_gid }}"
 docker_compose_generator_output_path: "/home/{{ main_username }}"
 
 # oncleben31-traefik
-traefik_file_provider: false
+traefik_file_provider: true
 traefik_enable_dashboard: true
-traefik_insecure_transport: false
+traefik_insecure_transport: true
 
 containers:
 ###
@@ -96,7 +96,7 @@ containers:
   - service_name: plex
     active: true
     image: plexinc/pms-docker
-    network_mode: host
+#    network_mode: host
     volumes:
       - "{{ appdata_path }}/plex/config:/config"
       - /opt/appdata/plex/transcode:/transcode
@@ -116,7 +116,7 @@ containers:
       - traefik.http.routers.plex.entrypoints=websecure
       - "traefik.http.routers.plex.rule=Host(`plex.{{ secret_local_domain }}`)"
       - traefik.http.services.plex.loadbalancer.server.port=32400
-    #  - traefik.http.services.plex.loadbalancer.server.scheme=https
+      - traefik.http.services.plex.loadbalancer.server.scheme=https
     include_global_env_vars: true
     restart: unless-stopped
 ###

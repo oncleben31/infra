@@ -14,11 +14,11 @@
     group: "{{ main_gid }}"
   tags: traefik
 
-# - name: copy traefik rules
-#   template:
-#     src: templates/rules.yaml.j2
-#     dest: "{{ appdata_path }}/traefik/rules.yaml"
-#     owner: "{{ main_uid }}"
-#     group: "{{ main_gid }}"
-#   when: traefik_file_provider
-#   tags: traefik
+- name: copy traefik rules
+  template:
+    src: templates/rules.yaml.j2
+    dest: "{{ appdata_path }}/traefik/rules.yaml"
+    owner: "{{ main_uid }}"
+    group: "{{ main_gid }}"
+  when: traefik_file_provider
+  tags: traefik
