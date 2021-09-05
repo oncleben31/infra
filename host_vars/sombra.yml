@@ -290,5 +290,21 @@ containers:
     restart: unless-stopped
     include_global_env_vars: true
 ###
+  - service_name: glances
+    image: nicolargo/glances:latest-alpine
+    hostname: sombra
+    active: true
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - "{{ appdata_path }}/glances:/glances/conf"
+    labels:
+      - traefik.enable=true
+      - "traefik.http.routers.glances.rule=Host(`glances.{{ secret_local_domain }}`)"
+      - traefik.http.routers.glances.entrypoints=websecure
+      - traefik.http.services.glances.loadbalancer.server.port=61208
+    environment:
+      - "GLANCES_OPT=-w"
+    include_global_env_vars: true
+    restart: unless-stopped
 
 
