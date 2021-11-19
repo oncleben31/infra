@@ -60,5 +60,6 @@ homebrew_installed_packages: "{{ homebrew_installed_packages_default + homebrew_
 
 # Python versions to install with pyenv
 pyenv_python_versions:
-  - 3.9.5
-  - 3.8.10
+  - 3.9.9
+  - 3.8.12
+  - 3.10.0
