@@ -214,20 +214,6 @@ containers:
     restart: unless-stopped
     include_global_env_vars: true
 ###
-  - service_name: jackett
-    active: true
-    image: linuxserver/jackett
-    environements:
-      - AUTO_UPDATE=true #optional
-      - RUN_OPTS=<run options here> #optional
-    volumes:
-      - "{{ appdata_path }}/jackett:/config"
-      - "{{ download_path }}:/downloads"
-    ports:
-      - 9117:9117
-    restart: unless-stopped
-    include_global_env_vars: true
-###
   - service_name: flaresolverr
     active: true
     image: ghcr.io/flaresolverr/flaresolverr:latest
@@ -243,6 +229,8 @@ containers:
   - service_name: watchtower
     active: true
     image: containrrr/watchtower
+    environment:
+     - WATCHTOWER_CLEANUP=true
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: unless-stopped
